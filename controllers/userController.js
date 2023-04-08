@@ -46,6 +46,43 @@ const userController = {
         res.sendStatus(400);
       });
   },
+
+  // PUT to update a user by its _id
+  updateUser(req, res) {
+    User.findOneAndUpdate({ _id: req.params.userId }, req.body, { new: true })
+      .then((userData) => {
+        if (!userData) {
+          res.status(404).json({ message: 'No user found with this id!' });
+          return;
+        }
+        res.json(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
+
+  // DELETE to remove user by its _id
+  deleteUser(req, res) {
+    User.findOneAndDelete({ _id: req.params.userId })
+      .then((userData) => {
+        if (!userData) {
+          res.status(404).json({ message: 'No user found with this id!' });
+          return;
+        }
+        return Thought.deleteMany({ _id: { $in: userData.thoughts } });
+      })
+      .then(() => {
+        res.json({
+          message: 'User and associated thoughts deleted successfully!',
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
 };
 
 module.exports = userController;
