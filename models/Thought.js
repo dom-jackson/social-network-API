@@ -26,7 +26,11 @@ if (mongoose.models.Thought) {
         default: Date.now,
         get: (timestamp) => new Date(timestamp).toLocaleString(),
       },
-      username: { type: String, required: true },
+      username: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
       reactions: [reactionSchema],
     },
     { toJSON: { virtuals: true }, id: false }
