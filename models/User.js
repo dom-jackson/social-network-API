@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const thoughtSchema = require('./thought');
 
 const userSchema = new Schema({
   username: {
@@ -26,6 +25,11 @@ const userSchema = new Schema({
       ref: 'User',
     },
   ],
+});
+
+userSchema.pre('find', function (next) {
+  this.populate('thoughts friends');
+  next();
 });
 
 const User = model('User', userSchema);
