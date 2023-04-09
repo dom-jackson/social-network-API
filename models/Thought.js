@@ -22,7 +22,7 @@ const thoughtSchema = new Schema(
       get: (timestamp) => new Date(timestamp).toLocaleString(),
     },
     username: {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: 'User',
       required: true,
     },

@@ -3,5 +3,23 @@
     "express": "^4.18.2",
     "mongodb": "^5.1.0",
     "mongoose": "^6.9.2"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "social-network-api",
+  "description": "Bootcamp challenge 18",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dom-jackson/social-network-API.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dom-jackson/social-network-API/issues"
+  },
+  "homepage": "https://github.com/dom-jackson/social-network-API#readme"
 }
